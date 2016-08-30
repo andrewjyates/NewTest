@@ -1,0 +1,129 @@
+% Typeset with XeTeX
+% Allows use of system fonts rather than just LaTeX's ones
+% NOTE - if you use TeXShop and Bibdesk (Mac), can complete citations
+%  - open your .bib file, type \citep{xx... and then F5 or Option-Escape
+\documentclass[11pt]{article}
+\usepackage{geometry} % set page layout
+\geometry{letterpaper}  % or a4paper
+\usepackage[xetex]{graphicx} % allows us to manipulate graphics.
+% Replace option [] with pdftex if you don't use Xe(La)TeX
+\usepackage{color}
+\usepackage{epstopdf} % automatic conversion of eps to pdf 
+\usepackage{amsmath, amssymb} % Better maths support & more symbols
+\usepackage{textcomp} % provide lots of new symbols - see textcomp.pdf
+% line spacing: \doublespacing, \onehalfspacing, \singlespacing
+\usepackage{setspace}
+\singlespacing
+% allows text flowing around figs
+% use \begin{wrapfigure}{x}{width} where x = r(ight) or l(eft)
+\usepackage{wrapfig}
+\usepackage[parfill]{parskip} % don't indent new paragraphs
+\usepackage{flafter}  % Don't place figs & tables before their definition 
+\usepackage{verbatim} % allows \begin and \end{comment} regions
+\usepackage{booktabs} % makes tables look good
+\usepackage{bm}  % Define \bm{} to use bold math fonts
+% linenumbers in L margin, start & end with \linenumbers \nolinenumbers,
+\usepackage{lineno} % use option [modulo] for steps of 5
+\usepackage[auth-sc]{authblk} % authors & institutions - see authblk.pdf
+\renewcommand\Authands{ and } % separates the last 2 authors in the list
+% control how captions look; here, use small font and indent both margins by 20pt
+\usepackage[small]{caption} 
+\setlength{\captionmargin}{20pt}
+%:FONT
+% If you don't want to use system fonts, don't use XeTeX, and 
+% replace from here to 'Citation style' with \usepackage{Palatino} or similar
+% 'no-math' = keep computer modern for math fonts unless you say differently below
+\usepackage[no-math]{fontspec}
+ % needed by XeTeX for handling all the system fonts nicely
+ \usepackage{xunicode}
+\usepackage[no-sscript]{xltxtra} 
+\setmonofont[Scale=0.8]{Lucida Sans} % typeface for \tt commands
+\setsansfont[BoldFont={Lucida Sans Demibold Roman}, ItalicFont={Lucida Sans Italic}]{Lucida Sans} %my choice of sans-serif font
+% convert LaTeX specials (``quotes'' --- dashes etc.) to unicode, to preserve them
+\defaultfontfeatures{Mapping=tex-text}
+% Leave all the following lines commented to get the normal Latex Computer Modern font
+\setmainfont{Lato}
+
+%:CITATION STYLE
+% natbib package: square,curly, angle(brackets)
+% colon (default), comma (to separate multiple citations)
+% authoryear (default),numbers (citations style)
+% super (for superscripted numerical citations, as in Nature)
+% sort (orders multiple cites into order of appearance in ref list, or year of pub if authoryear)
+% sort&compress: as sort, + multiple citations compressed (as 3-6, 15)
+\usepackage[authoryear,comma,sort]{natbib}
+
+%:NUMBERING STYLE FOR BIBLIOGRAPHY
+% (e.g, here it will be 1. and not [1] as in standard LaTeX)
+\makeatletter
+\renewcommand\@biblabel[1]{#1.}
+\makeatother
+
+%:SHORTCUT COMMANDS
+\newcommand{\ddt}[1]{\ensuremath{\frac{{\rm d}#1}{{\rm d}t}}}  % d/dt
+\newcommand{\dd}[2]{\ensuremath{\frac{{\rm d}#1}{{\rm d}#2}}} % dy by dx  - \dd{y}{x}
+\newcommand{\ddsq}[2]{\ensuremath{\frac{{\rm d}^2#1}{{\rm d}#2^2}}} % second deriv
+\newcommand{\pp}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}} % partial \pp{y}{x}
+\newcommand{\ppsq}[2]{\ensuremath{\frac{\partial^2 #1}{\partial {#2}^2}}}
+\newcommand{\superscript}[1]{\ensuremath{^{\textrm{#1}}}} %normal (non-math) font for super/subscripts in text
+\newcommand{\subscript}[1]{\ensuremath{_{\textrm{#1}}}}
+\newcommand{\red}[1]{{\color{red}{#1}}}
+\newcommand{\redtext}[1]{{\color{red}{#1}}}
+\newcommand{\blue}[1]{{\color{blue}{#1}}}
+\newcommand{\bluetext}[1]{{\color{blue}{#1}}}
+\newcommand{\green}[1]{{\color{green}{#1}}}
+\newcommand{\greentext}[1]{{\color{green}{#1}}}
+\newcommand{\scinot}[2]{$#1 \times 10^{#2}$}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+
+% \begin{graybox} text \end{graybox} for text with a background colour
+\definecolor{MyGray}{rgb}{0.96,0.97,0.98}
+\definecolor{MyGray}{rgb}{0.96,0.90,0.98}
+\makeatletter\newenvironment{graybox}{%
+   \begin{lrbox}
+   {\@tempboxa}\begin{minipage}[r]{0.98\columnwidth}}{\end{minipage}\end{lrbox}%
+   \colorbox{MyGray}{\usebox{\@tempboxa}}
+}\makeatother
+
+%:Title, authors and institutions
+\title{Now has a title}
+\author[1]{First}
+\author[2]{Second}
+\author[2]{Third}
+\author[1,*]{Andrew J. Yates}
+\affil[1]{\small Institute of Infection, Immunity \& Inflammation, Glasgow Biomedical Research Centre, University of Glasgow, 120 University Place, Glasgow
+G12 8TA, United Kingdom}
+\affil[2]{\small Other institution}
+\affil[*]{\small Corresponding author -- \tt{andrew.yates@glasgow.ac.uk}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+%:Abstract
+\linenumbers
+\begin{abstract}
+\noindent Abstract here\\[0.5cm]
+{\bf Keywords:} Modeling, biology
+\end{abstract}
+
+\section*{Introduction}
+
+\section*{Methods}
+
+\section*{Results}
+
+\section*{Discussion}
+
+\nolinenumbers % turn off line numbers before references start
+% REFERENCES START HERE
+% standard bst files are stored in /usr/local/texlive/2007/texmf-dist/bibtex/bst/
+% my own are in ~/Library/texmf/bibtex/bst/
+\bibliographystyle{plos} 
+\bibliography{/Users/andy/Documents/References-BibTeX/AndyReferences}
+\end{document}
+
+
+
